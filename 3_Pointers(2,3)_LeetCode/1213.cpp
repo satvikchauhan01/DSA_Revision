@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+#include <vector>
 class Solution {
   public:
     // Function to find common elements in three arrays.
