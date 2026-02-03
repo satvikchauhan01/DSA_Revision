@@ -43,6 +43,28 @@ void insertAtk(Node* &head, int val, int k){
     newNode->next=temp->next;
     temp->next=newNode;
 }
+//DELETION://
+void deleteFromEnd(Node* &head){
+    if(head==NULL || head->next==NULL){head=NULL;return;}
+    Node* temp=head;
+    while(temp->next->next!=NULL){
+        temp=temp->next;
+    }
+    delete temp->next;
+    temp->next=NULL;
+    return;
+
+}
+
+void deleteHead(Node * &head){
+    if(head==NULL){return;}
+    if(head->next==NULL){head=NULL; return;}
+    Node* temp=head;
+    head=head->next;
+    delete temp;
+}
+
+
 void print(Node* head){
     Node* temp=head;
     while(temp!=NULL){
@@ -62,5 +84,11 @@ int main() {
    print(head);
 
    insertAtk(head,33,1);
+   print(head);
+
+   deleteFromEnd(head);
+   print(head);
+
+   deleteHead(head);
    print(head);
 }
