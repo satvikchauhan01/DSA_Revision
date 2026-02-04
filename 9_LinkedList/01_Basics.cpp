@@ -74,28 +74,43 @@ void deleteHead(Node * &head){
     head=head->next;
     delete temp;
 }
-void deleteAtN(Node* &head, int n){
-    if(head==NULL){return;}
-    if(head->next==NULL){
-        Node* del=head;
-        head=NULL;
-        delete del;
-        return;
-    }
-    if(n==1){deleteHead(head);return;}
+// void deleteAtN(Node* &head, int n){
+//     if(head==NULL){return;}
+//     if(head->next==NULL){
+//         Node* del=head;
+//         head=NULL;
+//         delete del;
+//         return;
+//     }
+//     if(n==1){deleteHead(head);return;}
     
-    if(n==2){Node* ok=head->next; 
-        head->next=head->next->next; 
-        delete ok;
-        return; 
-    }
+//     if(n==2){Node* ok=head->next; 
+//         head->next=head->next->next; 
+//         delete ok;
+//         return; 
+//     }
 
-    Node* temp=head;
-    while(n>2){
+//     Node* temp=head;
+//     while(n>2){
+//         temp=temp->next;
+//         n--;
+//     }
+//     Node *del=temp->next;
+//     temp->next=temp->next->next;
+//     delete del;
+// }
+
+void deleteAtPos(Node* &head, int pos){
+    if(head==NULL){return;}
+    if(pos==1){deleteHead(head); return ;}
+
+    Node * temp=head;
+    for(int i=1; i<pos-1 && temp!=NULL; i++){
         temp=temp->next;
-        n--;
     }
-    Node *del=temp->next;
+    if(temp==NULL || temp->next ==NULL){return;}
+
+    Node* del=temp->next;
     temp->next=temp->next->next;
     delete del;
 }
@@ -127,6 +142,6 @@ int main() {
    deleteHead(head);
    print(head);
 
-   deleteAtN(head,5);
+   deleteAtPos(head,5);
    print(head);
 }

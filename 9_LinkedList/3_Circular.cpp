@@ -53,6 +53,49 @@ void insertAtN(Node* &head, int val, int k){
     newNode->next=temp->next;
     temp->next=newNode;
 }
+
+void deleteAtEnd(Node* &head){
+    if(head==NULL){return;}
+    if(head->next==head){delete head; head=NULL;return;}
+    Node* temp=head;
+    while(temp->next->next!=head){
+        temp=temp->next;
+    }
+    delete temp->next;
+    temp->next=head;
+}
+void deleteAtHead(Node* &head){
+    if(head==NULL){return;}
+    if(head->next==head){delete head; head=NULL;return;}
+
+    Node* temp=head;
+    while(temp->next!=head){
+        temp=temp->next;
+    }
+    Node* del=head;
+    temp->next=head->next;
+    head=head->next;
+    delete del;
+}
+void deleteAtPos(Node* &head, int n){
+    if(head==NULL){return;}
+    if(head->next==head && n==1){delete head; head=NULL;return;}
+    if(n==1){deleteAtHead(head); return;}
+    Node* temp=head;
+
+    for(int i=1; i<n-1&& temp!=head; i++){
+        temp=temp->next;
+    }
+    Node* del=temp->next;
+    temp->next=del->next;
+    delete del;
+}
+int searchRecursive(Node* head){
+    if(head==NULL){return 0;}
+    
+    
+    return  head->data+ searchRecursive(head->next);
+}
 void print(Node* head){
     if(head==NULL){cout<<"NULL";return;}
     Node* temp=head;
@@ -74,5 +117,14 @@ int main() {
     print(head);
 
     insertAtN(head,21,8);
+    print(head);
+
+    deleteAtEnd(head);
+    print(head);
+
+    deleteAtHead(head);
+    print(head);
+
+    deleteAtPos(head, 2);
     print(head);
 }
