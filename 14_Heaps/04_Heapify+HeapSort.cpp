@@ -21,10 +21,21 @@ class MaxHeap{
         }
     }
     void build(vector<int> & arr, int n){
-    for(int i=(n/2)-1 ; i>=0; i--){
-        heapify(arr, n ,i);
+        for(int i=(n/2)-1 ; i>=0; i--){
+            heapify(arr, n ,i);
+        }
     }
-}
+    void heapSort(vector<int> &arr){
+        int n=arr.size();
+        for(int i=n/2 -1; i>=0; i--){
+            heapify(arr,n,i);
+        }
+
+        for(int i=n-1; i>0; i--){
+            swap(arr[i], arr[0]);
+            heapify(arr, i, 0);
+        }
+    }
 
 };
 
@@ -35,5 +46,12 @@ int main(){
     h.build(arr, n);
     for(int i=0; i<arr.size(); i++){
         cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+    //heap sort: 
+    vector<int> arr1={12,4,5,2,76,3,56,9};
+    h.heapSort(arr1);
+    for(int i=0; i<arr1.size(); i++){
+        cout<<arr1[i]<<" ";
     }
 }
